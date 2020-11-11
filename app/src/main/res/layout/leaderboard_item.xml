@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="user"
+            type="com.mattg.arizonatownhall.utils.User" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/leader_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:background="@android:color/darker_gray"
+        android:orientation="horizontal"
+        android:paddingStart="2dp"
+        android:paddingEnd="2dp"
+        android:paddingBottom="2dp">
+
+        <TextView
+            android:id="@+id/tv_leader_position"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="textStart"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"
+            android:setUserText="@{user.position}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="position" />
+
+        <TextView
+            android:id="@+id/tv_leader_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="viewStart"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"
+            android:text="@{user.name}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tv_leader_position"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="name" />
+
+        <TextView
+            android:id="@+id/tv_leader_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto"
+            android:text="@string/score_leader_text"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tv_leader_score_input"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_leader_score_input"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:layout_weight="0"
+            android:fontFamily="@font/roboto"
+            android:textAlignment="textEnd"
+            android:textColor="@color/text_white"
+            android:textSize="18sp"
+            android:setUserText="@{user.points}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="number" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

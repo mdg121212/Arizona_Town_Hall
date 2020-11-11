@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="User Options"
+        android:icon="@drawable/fui_ic_anonymous_white_24dp"
+        app:showAsAction="always|withText"
+        app:labelVisibilityMode = "labeled"/>
+    <item
+        android:id="@+id/action_links"
+        android:title="Links"
+        android:icon="@drawable/ic_baseline_link_24"
+        app:showAsAction="always|withText"
+        app:labelVisibilityMode = "labeled"/>
+
+</menu>

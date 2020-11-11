@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="nsfw">
+        <item>fuck</item>
+        <item>fucking</item>
+        <item>fucked</item>
+        <item>dick</item>
+        <item>penis</item>
+        <item>dong</item>
+        <item>pussy</item>
+        <item>vag</item>
+        <item>vagina</item>
+        <item>cunt</item>
+        <item>bitch</item>
+        <item>whore</item>
+        <item>shit</item>
+        <item>shitting</item>
+        <item>bitching</item>
+        <item>bitch</item>
+        <item>faggot</item>
+        <item>homo</item>
+        <item>fag</item>
+        <item>gay</item>
+        <item>tits</item>
+        <item>titties</item>
+        <item>titty</item>
+        <item>dipshit</item>
+        <item>cock</item>
+        <item>cock sucker</item>
+        <item>asshole</item>
+        <item>ass hole</item>
+        <item>blowjob</item>
+        <item>blow job</item>
+        <item>rimjob</item>
+        <item>rim job</item>
+        <item>toss salad</item>
+        <item>ballsack</item>
+        <item>ball sack</item>
+
+    </string-array>
+</resources>

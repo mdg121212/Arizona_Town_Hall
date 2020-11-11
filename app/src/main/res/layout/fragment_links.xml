@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.LinksFragment">
+
+
+    <TextView
+        android:id="@+id/tv_links_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/links_title"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_faq"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/roboto"
+        android:text="@string/frequently_asked_questions"
+        android:textAlignment="center"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_zoom_help" />
+
+    <TextView
+        android:id="@+id/tv_town_hall_faq"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/community_town_hall_frequently_asked_questions"
+        android:textAlignment="center"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_faq" />
+
+
+    <TextView
+        android:id="@+id/tv_zoom_help"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/roboto"
+        android:text="@string/need_help_figuring_out_how_to_zoom"
+        android:textAlignment="center"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ib_instagram" />
+
+    <TextView
+        android:id="@+id/tv_events_calender"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="@font/roboto"
+        android:text="@string/events_calender"
+        android:textColor="@color/primaryDarkColor"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_town_hall_faq" />
+
+    <ImageButton
+        android:id="@+id/ib_facebook"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:alpha=".90"
+        android:background="#00FFFFFF"
+        android:src="@drawable/facebook"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ib_instagram" />
+
+    <ImageButton
+        android:id="@+id/ib_instagram"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:alpha=".9"
+        android:background="#08FFFFFF"
+        android:src="@drawable/instagram"
+        app:layout_constraintEnd_toStartOf="@+id/ib_twitter"
+        app:layout_constraintStart_toEndOf="@+id/ib_facebook"
+        app:layout_constraintTop_toBottomOf="@+id/tv_links_title" />
+
+    <ImageButton
+        android:id="@+id/ib_twitter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="32dp"
+        android:alpha=".9"
+        android:background="#00FFFFFF"
+        android:src="@drawable/twitter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ib_facebook" />
+</androidx.constraintlayout.widget.ConstraintLayout>

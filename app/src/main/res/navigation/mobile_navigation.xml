@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.mattg.arizonatownhall.ui.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_signInUserFragment"
+            app:destination="@id/signInUserFragment" />
+        <action
+            android:id="@+id/action_nav_home_to_linksFragment"
+            app:destination="@id/linksFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_registration_donation"
+        android:name="com.mattg.arizonatownhall.ui.registrationDonation.RegistrationDonationFragment"
+        android:label="Registration/Donation"
+        tools:layout="@layout/fragment_registration" />
+
+    <fragment
+        android:id="@+id/nav_social"
+        android:name="com.mattg.arizonatownhall.ui.social2.SocialFragment"
+        android:label="Social"
+        tools:layout="@layout/fragment_social" >
+        <argument
+            android:name="uri"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="default" />
+        <argument
+            android:name="iwill"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="default" />
+        <action
+            android:id="@+id/action_nav_social_to_stickerFragment"
+            app:destination="@id/stickerFragment" />
+        <argument
+            android:name="needToRotate"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="null" />
+    </fragment>
+    <fragment
+        android:id="@+id/stickerFragment"
+        android:name="com.mattg.arizonatownhall.ui.social2.StickerFragment"
+        android:label="fragment_sticker"
+        tools:layout="@layout/fragment_sticker" >
+        <argument
+            android:name="uri"
+            app:argType="string"
+            android:defaultValue="default" />
+        <action
+            android:id="@+id/action_stickerFragment_to_nav_social"
+            app:destination="@id/nav_social"
+            app:popUpTo="@id/nav_social" />
+        <argument android:name="iwill"
+            app:argType="string"
+            app:nullable="true"
+            android:defaultValue="default" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInUserFragment"
+        android:name="com.mattg.arizonatownhall.ui.wildapricotusersignsignin.SignInUserFragment"
+        android:label="fragment_sign_in_user"
+        tools:layout="@layout/fragment_sign_in_user" >
+        <action
+            android:id="@+id/action_signInUserFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/linksFragment"
+        android:name="com.mattg.arizonatownhall.ui.LinksFragment"
+        android:label="fragment_links"
+        tools:layout="@layout/fragment_links" />
+    <fragment
+        android:id="@+id/userOptionsFragment"
+        android:name="com.mattg.arizonatownhall.ui.UserOptionsFragment"
+        android:label="fragment_user_options"
+        tools:layout="@layout/fragment_user_options" />
+</navigation>

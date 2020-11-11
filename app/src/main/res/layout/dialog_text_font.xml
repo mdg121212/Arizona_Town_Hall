@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppTheme.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/darker_gray">
+
+    <TextView
+        android:id="@+id/tv_font_aguafina"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/aguafina_script"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.AppCompat.Aquafina"
+        android:textSize="24sp"
+        android:typeface="normal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_choose_text_title" />
+
+    <TextView
+        android:id="@+id/tv_font_mr_dafoe"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/mr_dafoe"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_aguafina"
+        app:layout_constraintTop_toTopOf="@+id/tv_font_aguafina" />
+
+    <TextView
+        android:id="@+id/tv_font_allura"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/allura"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_mr_dafoe"
+        app:layout_constraintTop_toTopOf="@+id/tv_font_aguafina" />
+
+    <TextView
+        android:id="@+id/tv_font_cinzel"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/cinzel_decorative"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_aguafina" />
+
+    <TextView
+        android:id="@+id/tv_font_lobster"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/lobster_two_italic"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_cinzel"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_aguafina" />
+
+    <TextView
+        android:id="@+id/tv_font_akronim"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/akronim"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_lobster"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_allura" />
+
+    <TextView
+        android:id="@+id/tv_font_monofett"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/monofett"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_cinzel" />
+
+    <TextView
+        android:id="@+id/tv_font_rock_salt"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/rock_salt"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_monofett"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_lobster" />
+
+    <TextView
+        android:id="@+id/tv_font_cursive"
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:fontFamily="@font/alex_brush"
+        android:text="@string/i_will_text"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tv_font_rock_salt"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_akronim" />
+
+    <TextView
+        android:id="@+id/tv_choose_text_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/roboto"
+        android:text="Click to choose font:"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_text_color"
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/btn_rounded"
+        android:fontFamily="@font/roboto"
+        android:text="Choose text color"
+        android:textColor="#FFFFFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_rock_salt" />
+
+    <SeekBar
+        android:id="@+id/seekBar_font_size"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_fontsize_indicator" />
+
+    <TextView
+        android:id="@+id/tv_font_size_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto"
+        android:text="Font size:"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_text_color" />
+
+    <TextView
+        android:id="@+id/tv_fontsize_indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/roboto"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_font_size_title" />
+
+    <Button
+        android:id="@+id/btn_text_chooser_done"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/btn_rounded"
+        android:fontFamily="@font/roboto"
+        android:text="done"
+        android:textColor="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar_font_size" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/akronim</item>
+        <item>@font/alex_brush</item>
+        <item>@font/allura</item>
+        <item></item>
+        <item>@font/anaheim</item>
+        <item>@font/cinzel_decorative</item>
+        <item>@font/codystar</item>
+        <item>@font/dancing_script</item>
+        <item>@font/lobster_two_italic</item>
+        <item>@font/monofett</item>
+        <item>@font/mr_dafoe</item>
+        <item>@font/roboto</item>
+        <item>@font/roboto_light</item>
+        <item>@font/rock_salt</item>
+        <item>@font/vast_shadow</item>
+    </array>
+</resources>
