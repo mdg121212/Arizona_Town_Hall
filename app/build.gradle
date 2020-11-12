@@ -24,7 +24,7 @@ android {
         buildConfigField("String", "TWITTER_API_KEY", apiKeyProperties['TWITTER_API_KEY'])
         buildConfigField("String", "TWITTER_SECRET", apiKeyProperties['TWITTER_API_SECRET'])
         buildConfigField("String", "TWITTER_BEARER", apiKeyProperties['TWITTER_BEARER'])
-
+        buildConfigField("Integer", "ACCOUNT_ID_ADMIN", apiKeyProperties['ACCOUNT_ID_ADMIN'] )
         applicationId "com.mattg.arizonatownhall"
         minSdkVersion 22
         targetSdkVersion 30

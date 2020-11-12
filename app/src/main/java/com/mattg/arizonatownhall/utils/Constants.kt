@@ -14,13 +14,11 @@ object Constants {
     const val twitterApiKey = BuildConfig.TWITTER_API_KEY
     const val twitterSecret = BuildConfig.TWITTER_SECRET
     const val twitterBearer = BuildConfig.TWITTER_BEARER
-
+    val accountIdAdmin = BuildConfig.ACCOUNT_ID_ADMIN
     var refreshToken = ""
     var token = ""
-    var accountIdAdmin = 59091
-    /**
-     * This function is used check the whether the device is connected to the Internet or not.
-     */
+
+
     fun isNetworkAvailable(context: Context): Boolean {
         // It answers the queries about the state of network connectivity.
         val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
@@ -30,7 +28,7 @@ object Constants {
             return when {
                 activeNetWork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
                 activeNetWork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                //for other device how are able to connect with Ethernet
+                //for other devices that are able to connect with Ethernet
                 activeNetWork.hasTransport(NetworkCapabilities.TRANSPORT_ETHERNET) -> true
                 else -> false
             }

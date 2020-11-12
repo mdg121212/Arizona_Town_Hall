@@ -3,6 +3,7 @@
 package com.mattg.arizonatownhall.utils
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -53,12 +54,12 @@ open class BaseFragment : Fragment(){
         shareDialog.registerCallback(callbackManager, callBack)
 
         storageRef = FirebaseStorage.getInstance().reference
-        //instance. database
+
         mFirebaseDatabaseInstance = FirebaseFirestore.getInstance()
-        //get current user to read from the right records
+
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
         val user = auth.currentUser
-        userId = user?.uid //if not null, get the id ONE TIME
+        userId = user?.uid
         userName = user?.displayName
     }
     private fun urlEncode(s:String):String {
@@ -82,6 +83,7 @@ open class BaseFragment : Fragment(){
             Log.d("base", "Error: ${error?.message}")
         }
     }
+     @SuppressLint("QueryPermissionsNeeded")
      private fun shareTwitter(message:String, uri: Uri) {
         val tweetIntent = Intent(Intent.ACTION_SEND)
         tweetIntent.putExtra(Intent.EXTRA_TEXT, message)

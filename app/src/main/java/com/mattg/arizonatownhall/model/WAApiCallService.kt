@@ -12,12 +12,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 object WAApiCallService {
 
 
-   // private  val BEARER_AUTH_HEADER_VALUE = "Bearer ${Constants.token}"
-   // private val BEARER_AUTH_HEADER_REFRESH_VALUE = "Bearer ${Constants.refreshToken}"
 
-   // private const val AUTH_KEY2 = "${Constants.apiClientId}:${Constants.apiClientSecret}"
     private const val API_KEY = "APIKEY:${Constants.apiKey}"
-   //  private  val CLIENT_SECRET_KEY = "Basic " + Base64.encodeToString(AUTH_KEY2.toByteArray(), Base64.NO_WRAP)
     private const val BASE_URL = "https://oauth.wildapricot.org/"
     private const val BASE_API_URL = "https://api.wildapricot.org/v2.2/"
     private val AUTH = "Basic " + Base64.encodeToString(API_KEY.toByteArray(), Base64.NO_WRAP)
@@ -102,14 +98,6 @@ object WAApiCallService {
     return apiGet!!
 
     }
-
-//    fun getAuthorizedApi() =
-//        Retrofit.Builder()
-//            .baseUrl(BASE_API_URL)
-//            .addConverterFactory(GsonConverterFactory.create())
-//            .build()
-//            .create(WAApiCall::class.java)
-
 
     fun get(): WAApiCall = getWAApiGet()
 

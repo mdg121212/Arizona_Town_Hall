@@ -62,10 +62,9 @@ class SocialFragment : BaseFragment() {
     private lateinit var shareDialog: ShareDialog
     private lateinit var currentPhotoPath: String
     private lateinit var clicklistenerBackground: BackRoundClickListener
-    //For accessing the firebase database
+    //For accessing firebase
     private var mFirebaseDatabaseInstance: FirebaseFirestore? = null
 
-    //create variable to hold userId
     private var userId: String? = null
     private var userName: String? = null
     private lateinit var rv: RecyclerView
@@ -90,7 +89,7 @@ class SocialFragment : BaseFragment() {
         callbackManager = CallbackManager.Factory.create()
         shareDialog = ShareDialog(this)
         shareDialog.registerCallback(callbackManager, callBack)
-        //instance. database
+
         mFirebaseDatabaseInstance = FirebaseFirestore.getInstance()
         //get current user to read from the right records
         val auth: FirebaseAuth = FirebaseAuth.getInstance()
@@ -157,11 +156,11 @@ class SocialFragment : BaseFragment() {
             }
         }
 
-        //init the ImageView, set onclick to take photo
+
         cameraView = view.findViewById(R.id.iv_borderselfie)
 
         socialViewModel.populateSocialRecyclers()
-        //  socialViewModel.populateIWillList()
+
 
         socialViewModel.leaders.observe(viewLifecycleOwner, {
             createRecycler(it)
@@ -439,13 +438,10 @@ class SocialFragment : BaseFragment() {
         rv.layoutManager = layoutManager
     }
 
-    /**
-     * THIS LISTENS FOR CHANGES AND UPDATES USER INFO DYNAMICALLY
-     * TESTED - DOES WORK FOR UPDATING POINTS FIELD, WHEN UPDATED THE POINTS ARE SHOWN IN APP REAL TIME
-     */
+
     @SuppressLint("SetTextI18n")
     private fun watchForDataChanged() {
-        //how to access the document for the user
+        //access the document for the user
         val docReference = mFirebaseDatabaseInstance?.collection("users")?.document(userId!!)
         docReference?.addSnapshotListener { snapshot, e ->
             if (e != null) {
@@ -477,7 +473,7 @@ class SocialFragment : BaseFragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        //Call callbackmanager on activityresult to pass login result
+
         callbackManager.onActivityResult(requestCode, resultCode, data)
         if (resultCode == Activity.RESULT_OK && requestCode == GALLERY_PICTURE_REQUEST_CODE) {
             val uri = data?.data!!
@@ -512,7 +508,7 @@ class SocialFragment : BaseFragment() {
                 Toast.makeText(requireContext(), "Error saving picture", Toast.LENGTH_SHORT).show()
                 null
             }
-            //continue only if the File was created (null check)
+            //continue only if the File was created
             photoFile?.also {
                 val photoUri: Uri = FileProvider.getUriForFile(
                     requireContext(),

@@ -19,8 +19,7 @@ interface WAApiCall {
 
     @GET("accounts/{accountId}/Events?" + "$" +"filter=isUpComing eq true AND RegistrationEnabled eq true &" + "$" +"sort=ByStartDate asc" )
     fun getEvents(@Path("accountId") id: String, @Header("Authorization") auth: String): Call<EventsResponse>
-    //"accept: application/json
-    // Bearer j1cr-tw-tiIc6sWfrJzoWJ-5Rf8-
+
     @GET("accounts/{accountId}/Events/{eventId}")
     fun getSingleEvent(@Path ("accountId") id: String, @Path("eventId") eventId: String, @Header("Authorization") auth: String): Call<Event>
 

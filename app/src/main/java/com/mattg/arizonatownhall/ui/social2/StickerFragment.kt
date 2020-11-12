@@ -431,19 +431,6 @@ open class StickerFragment : BaseFragment() {
         drawable_canvas.setFont(fontInt)
     }
 
-    /**
-     * Possible upgrade in future to have bitmap stickers for I will text (could not get it to work with current classes)
-     */
-//    open fun changeBitmapColor(sourceBitmap: Bitmap, color: Int): Bitmap? {
-//        val resultBitmap = sourceBitmap.copy(sourceBitmap.config, true)
-//        val paint = Paint()
-//        val filter: ColorFilter = LightingColorFilter(color, 9)
-//        paint.colorFilter = filter
-//        val canvas = Canvas(resultBitmap)
-//        canvas.drawBitmap(resultBitmap, 0f, 0f, paint)
-//        return resultBitmap
-//    }
-
 
     @SuppressLint("SetTextI18n")
     private fun startStickerDialog() {
@@ -538,7 +525,7 @@ open class StickerFragment : BaseFragment() {
         //bind canvas that is on view
         val canvas = Canvas(returnedBitmap)
         //get background as well
-        val bgDrawable = iv_picture_for_sticker.background  //here is where to fix the issue
+        val bgDrawable = iv_picture_for_sticker.background
         if (bgDrawable != null) {
             bgDrawable.draw(canvas)
         } else {
@@ -566,7 +553,7 @@ open class StickerFragment : BaseFragment() {
         mBitmap.setHasAlpha(true)
         val bytes = ByteArrayOutputStream() //pass to compress method First step for saving files
         mBitmap.compress(Bitmap.CompressFormat.PNG, 90, bytes)
-        //get actual file / make actual file
+
         val fileSave = File(
             context?.getExternalFilesDir(null)?.absoluteFile.toString()
                     + File.separator
@@ -574,7 +561,6 @@ open class StickerFragment : BaseFragment() {
                     + System.currentTimeMillis() / 1000
                     + ".png"
         )  //each file needs unique name, use the current time by millisecond
-        //create file output stream
 
         runBlocking {
             val fos = FileOutputStream(fileSave)

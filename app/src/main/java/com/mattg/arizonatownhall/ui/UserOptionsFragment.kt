@@ -19,8 +19,7 @@ import com.mattg.arizonatownhall.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user_options.*
 import kotlinx.android.synthetic.main.notifications_dialog.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
 
 class UserOptionsFragment : BaseFragment() {
 

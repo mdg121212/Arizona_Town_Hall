@@ -9,10 +9,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.mattg.arizonatownhall.utils.ClickListener
-import com.mattg.arizonatownhall.utils.NewsClickListener
 import com.mattg.arizonatownhall.R
 import com.mattg.arizonatownhall.utils.BaseFragment
+import com.mattg.arizonatownhall.utils.ClickListener
+import com.mattg.arizonatownhall.utils.NewsClickListener
 import io.swagger.client.models.Event
 import kotlinx.android.synthetic.main.fragment_home.*
 import kotlinx.android.synthetic.main.login_web_portal_dialog.*
@@ -26,14 +26,14 @@ class HomeFragment : BaseFragment() {
 
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
         homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         homeViewModel.onAuthenticate((homeViewModel.requestBody), "events")
@@ -43,13 +43,16 @@ class HomeFragment : BaseFragment() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
 
-        val isFirst = requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE).getBoolean("isFirst", true)
+        val isFirst =
+            requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE)
+                .getBoolean("isFirst", true)
 
-        if(isFirst){
+        if (isFirst) {
             showLoginDialog()
         }
 
-        requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE).edit().putBoolean("isFirst", false).apply()
+        requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE).edit()
+            .putBoolean("isFirst", false).apply()
 
         return root
     }
@@ -60,14 +63,13 @@ class HomeFragment : BaseFragment() {
         homeViewModel.news.observe(viewLifecycleOwner, {
             addNewsToRecycler(it)
         })
-        homeViewModel.events.observe(viewLifecycleOwner,  {
+        homeViewModel.events.observe(viewLifecycleOwner, {
             setupEventsRecycler(it.reversed())
             progressBar.visibility = View.INVISIBLE
         })
-        homeViewModel.itemToShare.observe(viewLifecycleOwner,  {
+        homeViewModel.itemToShare.observe(viewLifecycleOwner, {
             postToFaceBook(it, null, null)
         })
-
 
 
     }
@@ -92,34 +94,35 @@ class HomeFragment : BaseFragment() {
 
     }
 
-    private fun addNewsToRecycler(news: List<NewsItem>){
+    private fun addNewsToRecycler(news: List<NewsItem>) {
         val recyclerNews = rv_home_news
-        clickListenerNews = NewsClickListener{ _, type, url ->
-            when(type){
-                0-> startCustomTab(url, requireContext())
-                1-> homeViewModel.itemToShare.value = url
+        clickListenerNews = NewsClickListener { _, type, url ->
+            when (type) {
+                0 -> startCustomTab(url, requireContext())
+                1 -> homeViewModel.itemToShare.value = url
             }
 
         }
         val adapterNews = HomeNewsAdapter(requireContext(), news, clickListenerNews)
-        val layoutManagerNews = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        val layoutManagerNews =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
         recyclerNews.adapter = adapterNews
         recyclerNews.layoutManager = layoutManagerNews
     }
 
     private fun setupEventsRecycler(list: List<Event>) {
         val recyclerEvents = rv_homeEvents
-        clickListener = ClickListener { _, press, url->
+        clickListener = ClickListener { _, press, url ->
 
-            when(press){
+            when (press) {
 
-            0-> {
-                startCustomTab("https://aztownhall.org/event-$url", requireContext())
-            }
+                0 -> {
+                    startCustomTab("https://aztownhall.org/event-$url", requireContext())
+                }
 
-            1-> {
-                homeViewModel.itemToShare.value = "https://aztownhall.org/event-$url"
-            }
+                1 -> {
+                    homeViewModel.itemToShare.value = "https://aztownhall.org/event-$url"
+                }
 
             }
 
