@@ -1,11 +1,10 @@
-package com.mattg.arizonatownhall.ui
+package com.mattg.arizonatownhall.utils
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.mattg.arizonatownhall.R
-import com.mattg.arizonatownhall.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_links.*
 
 

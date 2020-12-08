@@ -42,32 +42,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/iv_borderselfie" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_leaderboard"
-                android:layout_width="0dp"
-                android:layout_height="125dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:padding="2dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_current_leaders_title" />
-
-            <TextView
-                android:id="@+id/tv_current_leaders_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto"
-                android:padding="2dp"
-                android:text="@string/current_leaders_txt"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_your_points" />
-
             <ImageView
                 android:id="@+id/iv_borderselfie"
                 android:layout_width="wrap_content"
@@ -135,18 +109,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_iwillheader" />
 
-            <TextView
-                android:id="@+id/tv_your_points"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/roboto"
-                android:padding="2dp"
-                android:text="@string/your_points_text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_photoItems"
                 android:layout_width="0dp"
@@ -168,11 +130,11 @@
                 android:layout_marginEnd="16dp"
                 android:fontFamily="@font/roboto"
                 android:text="@string/i_will_uploads_text"
-                android:textSize="18sp"
+                android:textSize="24sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rv_leaderboard" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_iwillposts_info"

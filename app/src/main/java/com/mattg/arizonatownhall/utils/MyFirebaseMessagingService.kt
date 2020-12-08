@@ -6,45 +6,53 @@ import android.app.NotificationManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
-import android.net.Uri
 import android.os.Build
 import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.browser.customtabs.CustomTabsIntent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
-import com.mattg.arizonatownhall.activities.MainActivity
 import com.mattg.arizonatownhall.R
+import com.mattg.arizonatownhall.activities.MainActivity
 
 
-private const val TAG = "MESSAGINGSERVICE"
+private const val TAG = "fixingmessage"
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     val context = Application().baseContext
     var link: String = ""
 
     //app in foreground
-    override fun onMessageReceived(p0: RemoteMessage) {
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onMessageReceived(remoteMessage: RemoteMessage) {
         //first thing to do is handle fcm messages
-        Log.d(TAG, "From: ${p0.from}")
+        Log.d(TAG, "From: ${remoteMessage.from}")
         //check for data
-        p0.data.isNotEmpty().let {
-            Log.d(TAG, "Message data payload: ${p0.data}")
-            link = p0.data["url"].toString()
+        remoteMessage.data.isNotEmpty().let {
+            Log.d(TAG, "Message data payload: ${remoteMessage.data}")
+            link = remoteMessage.data["url"].toString()
+            Log.i(TAG, "about to send message with $link as data")
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                sendNotification(remoteMessage.notification?.body.toString(), link)
+            }
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
+                val nm = NotificationManagerCompat.from(this)
+                nm.sendNotification(remoteMessage.notification?.body.toString(), this)
+            }
 
         }
 
         //check for notification payload
-        p0.notification?.let {
+        remoteMessage.notification?.let {
             Log.d(TAG, "Message notification body: ${it.body}")
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 sendNotification(it.body.toString(), link)
             }
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
                 val nm = NotificationManagerCompat.from(this)
+                nm.sendNotification(it.body.toString(), context)
             }
         }
 
@@ -54,9 +62,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     //showing the notification
     @RequiresApi(Build.VERSION_CODES.O)
     private fun sendNotification(messageBody: String, link: String) {
+        Log.i(TAG, "SENDING NOTIFICATION ")
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("url", link)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+        intent.putExtra("url", link ?: null)
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
         val pendingIntent = PendingIntent.getActivity(
             this, 0, intent,
             PendingIntent.FLAG_ONE_SHOT
@@ -85,15 +94,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         Log.d(TAG, "Refreshed token: $token")
     }
 
-    fun openUrlLinkFromMessage(context: Context, url: String) {
-        val url = url
-        if (url != "") {
-            val builder = CustomTabsIntent.Builder()
-            val colorInt = Color.parseColor("#7f0000")
-            builder.setToolbarColor(colorInt)
-            val customTabIntent = builder.build()
-            customTabIntent.launchUrl(context, Uri.parse(url))
-        }
+
+    companion object {
+        private const val TAG = "fixingmessage"
     }
 
 }

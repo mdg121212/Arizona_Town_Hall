@@ -1,4 +1,4 @@
-package com.mattg.arizonatownhall.ui
+package com.mattg.arizonatownhall.utils
 
 import android.app.Dialog
 import android.content.Intent
@@ -12,13 +12,11 @@ import com.firebase.ui.auth.AuthUI
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.messaging.FirebaseMessaging
-import com.mattg.arizonatownhall.activities.LoginActivity
 import com.mattg.arizonatownhall.R
+import com.mattg.arizonatownhall.activities.LoginActivity
 import com.mattg.arizonatownhall.activities.TOPIC_EVENTS
-import com.mattg.arizonatownhall.utils.BaseFragment
 import kotlinx.android.synthetic.main.fragment_user_options.*
 import kotlinx.android.synthetic.main.notifications_dialog.*
-
 
 
 class UserOptionsFragment : BaseFragment() {
@@ -119,6 +117,7 @@ class UserOptionsFragment : BaseFragment() {
                 ).show()
                 val intent = Intent(requireContext(), LoginActivity::class.java)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                requireActivity().finish()
                 startActivity(intent)
             }
     }

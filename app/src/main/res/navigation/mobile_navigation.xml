@@ -12,10 +12,18 @@
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_signInUserFragment"
-            app:destination="@id/signInUserFragment" />
+            app:destination="@id/signInUserFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_up" />
         <action
             android:id="@+id/action_nav_home_to_linksFragment"
-            app:destination="@id/linksFragment" />
+            app:destination="@id/linksFragment"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_up" />
     </fragment>
 
     <fragment
@@ -40,6 +48,13 @@
             app:nullable="true"
             android:defaultValue="default" />
         <action
+            android:id="@+id/action_nav_social_to_self"
+            app:destination="@id/nav_social"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_up" />
+        <action
             android:id="@+id/action_nav_social_to_stickerFragment"
             app:destination="@id/stickerFragment" />
         <argument
@@ -60,7 +75,12 @@
         <action
             android:id="@+id/action_stickerFragment_to_nav_social"
             app:destination="@id/nav_social"
-            app:popUpTo="@id/nav_social" />
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_up"
+            app:popUpTo="@id/nav_social"
+            app:popUpToInclusive="true" />
         <argument android:name="iwill"
             app:argType="string"
             app:nullable="true"
@@ -73,16 +93,20 @@
         tools:layout="@layout/fragment_sign_in_user" >
         <action
             android:id="@+id/action_signInUserFragment_to_nav_home"
-            app:destination="@id/nav_home" />
+            app:destination="@id/nav_home"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/slide_down"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_up" />
     </fragment>
     <fragment
         android:id="@+id/linksFragment"
-        android:name="com.mattg.arizonatownhall.ui.LinksFragment"
+        android:name="com.mattg.arizonatownhall.utils.LinksFragment"
         android:label="fragment_links"
         tools:layout="@layout/fragment_links" />
     <fragment
         android:id="@+id/userOptionsFragment"
-        android:name="com.mattg.arizonatownhall.ui.UserOptionsFragment"
+        android:name="com.mattg.arizonatownhall.utils.UserOptionsFragment"
         android:label="fragment_user_options"
         tools:layout="@layout/fragment_user_options" />
 </navigation>

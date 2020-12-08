@@ -1,6 +1,6 @@
 package com.mattg.arizonatownhall.ui.social2
 
-import android.annotation.SuppressLint
+
 import android.app.Activity
 import android.app.AlertDialog
 import android.app.Dialog
@@ -16,7 +16,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.FileProvider
@@ -40,10 +39,9 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.StorageReference
 import com.google.firebase.storage.UploadTask
 import com.mattg.arizonatownhall.R
-import com.mattg.arizonatownhall.viewmodels.SocialViewModel
 import com.mattg.arizonatownhall.databinding.FragmentSocialBinding
 import com.mattg.arizonatownhall.utils.BaseFragment
-import com.mattg.arizonatownhall.utils.User
+import com.mattg.arizonatownhall.viewmodels.SocialViewModel
 import kotlinx.android.synthetic.main.fragment_social.*
 import java.io.File
 import java.io.IOException
@@ -74,7 +72,6 @@ class SocialFragment : BaseFragment() {
     private var imageBmp: Bitmap? = null
     private lateinit var binding: FragmentSocialBinding
     private var uriOfSelfie = ""
-    private lateinit var yourPointsText: TextView
     private lateinit var storageRef: StorageReference
     private var uriFromGallery = ""
     private var videoCaptureUri = ""
@@ -99,8 +96,6 @@ class SocialFragment : BaseFragment() {
 
         storageRef = FirebaseStorage.getInstance().reference
 
-        watchForDataChanged()
-
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
 
@@ -111,14 +106,13 @@ class SocialFragment : BaseFragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
         binding = FragmentSocialBinding.inflate(inflater, container, false)
         socialViewModel =
             ViewModelProvider(this).get(SocialViewModel::class.java)
 
-        yourPointsText = binding.tvYourPoints
         return binding.root
     }
 
@@ -161,10 +155,6 @@ class SocialFragment : BaseFragment() {
 
         socialViewModel.populateSocialRecyclers()
 
-
-        socialViewModel.leaders.observe(viewLifecycleOwner, {
-            createRecycler(it)
-        })
         socialViewModel.photoList.observe(viewLifecycleOwner, {
             createPhotoRecycler(it)
             progressBar2.visibility = View.INVISIBLE
@@ -237,25 +227,21 @@ class SocialFragment : BaseFragment() {
                                         }
                                         when(it.imageId){
                                             R.drawable.gradient_one -> {
-//
                                                 uriFromGradient = "R.drawable.gradient_one"
                                                 startEditAction(string)
                                                dismiss()
                                             }
                                             R.drawable.gradient_two -> {
-//
                                                 uriFromGradient = "R.drawable.gradient_two"
                                                 startEditAction(string)
                                                 dismiss()
                                             }
                                             R.drawable.gradient_three -> {
-//
                                                 uriFromGradient = "R.drawable.gradient_three"
                                                 startEditAction(string)
                                                 dismiss()
                                             }
                                             R.drawable.gradient_four -> {
-//
                                                 uriFromGradient = "R.drawable.gradient_four"
                                                 startEditAction(string)
                                                 dismiss()
@@ -375,7 +361,7 @@ class SocialFragment : BaseFragment() {
                 ).show()
 
             }.addOnSuccessListener {
-
+                findNavController().navigate(R.id.action_nav_social_to_self)
             }
         }
 
@@ -430,31 +416,6 @@ class SocialFragment : BaseFragment() {
         rvPhotos.layoutManager = layoutManager2
     }
 
-    private fun createRecycler(list: List<User>) {
-        rv = rv_leaderboard
-        rv.adapter = LeaderBoardAdapter(requireContext(), list)
-        val layoutManager =
-            LinearLayoutManager(requireContext(), LinearLayoutManager.VERTICAL, false)
-        rv.layoutManager = layoutManager
-    }
-
-
-    @SuppressLint("SetTextI18n")
-    private fun watchForDataChanged() {
-        //access the document for the user
-        val docReference = mFirebaseDatabaseInstance?.collection("users")?.document(userId!!)
-        docReference?.addSnapshotListener { snapshot, e ->
-            if (e != null) {
-                Log.e(TAG, "Listen Failed : ${e.message}")
-                return@addSnapshotListener
-            }
-            if (snapshot != null && snapshot.exists()) {
-                Log.e(TAG, "Current Data: ${snapshot.data}")
-                val user = snapshot.toObject(User::class.java)
-                yourPointsText.text = "Your Points: ${user?.points}"
-            }
-        }
-    }
 
     private val callBack = object : FacebookCallback<Sharer.Result> {
         override fun onSuccess(result: Sharer.Result?) {

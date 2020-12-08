@@ -1,18 +1,14 @@
 package com.mattg.arizonatownhall.ui.social2
 
 import android.content.Context
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
 import com.mattg.arizonatownhall.databinding.StickerItemBinding
 
 
 import com.mattg.arizonatownhall.stickerView.Sticker
-import com.mattg.arizonatownhall.stickerView.StickerInt
-import kotlinx.android.synthetic.main.sticker_item.view.*
+
 //List<Sticker>
 class StickerAdapter(val context: Context, private val stickers: List<Sticker>, private val clickListener: StickerClickListener) : RecyclerView.Adapter<StickerAdapter.StickerViewHolder>(){
 

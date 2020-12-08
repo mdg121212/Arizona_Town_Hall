@@ -8,12 +8,16 @@ import com.bumptech.glide.Glide
 import com.mattg.arizonatownhall.databinding.GradientItemBinding
 
 
-class BackgroundAdapter(val context: Context, val backgrounds: List<BackgroundItem>, private val clicklistener: BackRoundClickListener ) :
-RecyclerView.Adapter<BackgroundAdapter.BackgroundViewHolder>(){
+class BackgroundAdapter(
+    val context: Context,
+    val backgrounds: List<BackgroundItem>,
+    private val clicklistener: BackRoundClickListener
+) :
+    RecyclerView.Adapter<BackgroundAdapter.BackgroundViewHolder>() {
     class BackgroundViewHolder private constructor(val binding: GradientItemBinding) :
-    RecyclerView.ViewHolder(binding.root){
+        RecyclerView.ViewHolder(binding.root) {
         companion object {
-            fun from(parent:ViewGroup) : BackgroundViewHolder {
+            fun from(parent: ViewGroup): BackgroundViewHolder {
                 val layoutInflater = LayoutInflater.from(parent.context)
                 val binding = GradientItemBinding.inflate(layoutInflater, parent, false)
                 return BackgroundViewHolder(binding)
