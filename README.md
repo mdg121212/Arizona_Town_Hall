@@ -6,4 +6,4 @@ This app uses:
 - Retrofit2 for Api Calls.
 - Twitter and Facebook SDKs.
 - https://github.com/nimengbo/StickerView for stickers.
-- Firebase Storage, Firebase authentication, Firestore for storage, and Firebase cloud messaging.
+- Firebase Storage, Firebase authentication, Firestore, and Firebase cloud messaging.
