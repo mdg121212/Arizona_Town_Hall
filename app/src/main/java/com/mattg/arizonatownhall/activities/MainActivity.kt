@@ -2,6 +2,7 @@ package com.mattg.arizonatownhall.activities
 
 
 import android.Manifest
+import android.app.Dialog
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.ActivityNotFoundException
@@ -38,6 +39,7 @@ import com.google.firebase.messaging.FirebaseMessaging
 import com.mattg.arizonatownhall.R
 import com.mattg.arizonatownhall.utils.Constants
 import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.login_web_portal_dialog.*
 
 
 const val TOPIC_NEWS = "News"
@@ -78,14 +80,7 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
             callbackManager = CallbackManager.Factory.create()
 
-            //handle url link data if sent in fcm message, opens link in custom chrome tab
-            if (intent.extras != null) {
-                if (intent.extras!!["url"] != "") {
-                    val url = intent.extras!!["url"].toString()
-                    startCustomTab(url, this)
-                }
 
-            }
 
             val channelId = getString(R.string.default_notification_channel_id)
             val channelName = getString(R.string.default_notification_channel_name)
@@ -107,6 +102,40 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
 
 
             }
+
+            val extras = intent?.extras
+
+            Log.i(
+                "**********",
+                " extras is ${extras.toString()} or $extras and getKeyUrl is ${extras?.get("url")}"
+            )
+
+            //handle url link data if sent in fcm message, opens link in custom chrome tab
+            if (extras != null) {
+                Log.i("*******", "extras was not null it was $extras")
+                if (extras.get("url") != null || !extras.get("url").toString()
+                        .isNullOrEmpty() || extras.get("url") != ""
+                ) {
+
+                    val url = extras["url"].toString()
+                    Log.i(
+                        "********",
+                        "the url part of extras is $url  it should not be blank or null"
+                    )
+                    if (url != "null" || url != "" || url.toString().isNotEmpty() || url.toString()
+                            .isNotBlank()
+                    ) {
+                        if (url.startsWith("https://") || url.startsWith("http://")) {
+                            startCustomTab(url, this)
+                        }
+
+                        intent.extras?.clear()
+
+                    }
+
+                }
+
+            }
             //to target single device need registration token
             FirebaseInstanceId.getInstance().instanceId
                 .addOnCompleteListener(OnCompleteListener { task ->
@@ -115,7 +144,7 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
                         return@OnCompleteListener
                     }
                     //get new instance id token
-                  //  val token = task.result?.token
+                    //  val token = task.result?.token
                 })
         } else {
 
@@ -127,6 +156,7 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
             onDestroy()
         }
     }
+
 
     private fun setupNavigation() {
         bottomNavigationView
@@ -161,12 +191,47 @@ class MainActivity : AppCompatActivity(), LifecycleOwner {
     ) {
         if (requestCode == PERMISSION_ID) {
             if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                val isFirst =
+                    this.getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE)
+                        .getBoolean("isFirst", true)
+
+                Log.i("*******", "is first  = $isFirst")
+
+                if (isFirst) {
+                    showLoginDialog(this)
+                }
+
+                this.getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE).edit()
+                    .putBoolean("isFirst", false).apply()
+
                 return
             } else {
                 checkPermissions()
             }
         }
     }
+
+
+    private fun showLoginDialog(context: Context) {
+
+        Dialog(this).apply {
+            setContentView(R.layout.login_web_portal_dialog)
+            btn_dialog_yes.setOnClickListener {
+                startCustomTab("https://aztownhall.org/Sys/Login", context)
+                dismiss()
+            }
+            btn_dialog_no.setOnClickListener {
+                dismiss()
+            }
+            btn_dialog_member.setOnClickListener {
+                startCustomTab("https://aztownhall.org/Support", context)
+                dismiss()
+            }
+
+        }.show()
+
+    }
+
 
     private fun startCustomTab(url: String, context: Context) {
         val builder = CustomTabsIntent.Builder()

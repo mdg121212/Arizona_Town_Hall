@@ -46,9 +46,9 @@
     <string name="oauth_post_endpoint">/auth/token</string>
     <string name="callbackUrl">aztownhall://callback</string>
     <string name="text_small_description">Selection for small sized text</string>
-    <string name="small_size_text">Small %1$s</string>
-    <string name="medium_size_text">Medium %1$s</string>
-    <string name="large_size_text">Large %1$s</string>
+    <string name="small_size_text">Small</string>
+    <string name="medium_size_text">Medium</string>
+    <string name="large_size_text">Large</string>
     <string name="font_test_text">Font</string>
     <string name="i_will_text">I Will</string>
     <string name="share_btn_text">Share</string>

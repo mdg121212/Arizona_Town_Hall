@@ -300,13 +300,13 @@ open class StickerFragment : BaseFragment() {
                     val value = min + (progress * step)
                     setFontSize(value.toFloat())
                     if (value in 180..260) {
-                        sizeText.text = getString(R.string.small_size_text, value.toString())
+                        sizeText.text = getString(R.string.small_size_text)
                     }
                     if (value in 261..340) {
-                        sizeText.text = getString(R.string.medium_size_text, value.toString())
+                        sizeText.text = getString(R.string.medium_size_text)
                     }
                     if (value in 341..420) {
-                        sizeText.text = getString(R.string.large_size_text, value.toString())
+                        sizeText.text = getString(R.string.large_size_text)
                     }
                 }
 

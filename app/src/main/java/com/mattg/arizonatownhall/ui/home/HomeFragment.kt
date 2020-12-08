@@ -1,6 +1,5 @@
 package com.mattg.arizonatownhall.ui.home
 
-import android.app.Dialog
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -15,7 +14,6 @@ import com.mattg.arizonatownhall.utils.ClickListener
 import com.mattg.arizonatownhall.utils.NewsClickListener
 import io.swagger.client.models.Event
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.login_web_portal_dialog.*
 
 
 class HomeFragment : BaseFragment() {
@@ -43,16 +41,7 @@ class HomeFragment : BaseFragment() {
         val navBar: BottomNavigationView = requireActivity().findViewById(R.id.bottomNavigationView)
         navBar.visibility = View.VISIBLE
 
-        val isFirst =
-            requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE)
-                .getBoolean("isFirst", true)
 
-        if (isFirst) {
-            showLoginDialog()
-        }
-
-        requireActivity().getSharedPreferences("PREFERENCE", AppCompatActivity.MODE_PRIVATE).edit()
-            .putBoolean("isFirst", false).apply()
 
         return root
     }
@@ -71,26 +60,6 @@ class HomeFragment : BaseFragment() {
             postToFaceBook(it, null, null)
         })
 
-
-    }
-
-    private fun showLoginDialog() {
-
-        Dialog(requireContext()).apply {
-            setContentView(R.layout.login_web_portal_dialog)
-            btn_dialog_yes.setOnClickListener {
-                startCustomTab("https://aztownhall.org/Sys/Login", requireContext())
-                dismiss()
-            }
-            btn_dialog_no.setOnClickListener {
-                dismiss()
-            }
-            btn_dialog_member.setOnClickListener {
-                startCustomTab("https://aztownhall.org/Support", requireContext())
-                dismiss()
-            }
-
-        }.show()
 
     }
 

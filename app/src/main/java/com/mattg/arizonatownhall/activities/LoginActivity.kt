@@ -14,30 +14,36 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.mattg.arizonatownhall.R
 import com.mattg.arizonatownhall.utils.User
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+
 class LoginActivity : AppCompatActivity() {
 
     private var isFirebaseLaunched = false
     private var mFirebaseDatabaseInstance: FirebaseFirestore? = null
+    private var url: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Log.i("onCreate", "onCreate called")
+
         setContentView(R.layout.activity_login)
 
         mFirebaseDatabaseInstance = FirebaseFirestore.getInstance()
 
+        val extras = intent.extras
+
+        if (extras != null) {
+            //the intent carried a url to open
+            url = extras.get("url").toString()
+        }
         setClickListeners()
     }
 
     private fun setClickListeners() {
         btn_login.setOnClickListener {
-            /**
-             * If sign-in bug cannot be fixed, will add toast here to inform user to reopen application after
-             * signing in...
-             */
             CoroutineScope(Dispatchers.Unconfined).launch { onSignInClickedButton() }
-
         }
         btn_logout.setOnClickListener {
             onSignOutClickedButton()
@@ -46,42 +52,53 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        //check if users signed in already in onStart
-        val auth = getInstance()
 
-        val intent = Intent(this, MainActivity::class.java)
+        val wasSignIn = getSharedPreferences("PREFERENCE", MODE_PRIVATE)
+            .getBoolean("wasSignInCalled", false)
+        if (!wasSignIn) {
 
-        if (auth.currentUser != null) {
-            Toast.makeText(
-                applicationContext,
-                "Welcome Back! Signing you back in...",
-                Toast.LENGTH_SHORT
-            ).show()
-            val userToSave = getInstance().currentUser
-            val userName = userToSave?.displayName
-            val email = userToSave?.email
-            val userId = userToSave?.uid
-            val userToAdd = User(userName!!, email!!, userId!!)
 
-            //checking to see if user document in database exists, if it doesn't, then create it
-            mFirebaseDatabaseInstance!!.collection("users").document(userId).get()
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
-                        val document = it.result
-                        if (document != null) {
-                            if (document.exists()) {
-                                startActivity(intent)
-                            } else {
-                                mFirebaseDatabaseInstance!!.collection("users").document(userId)
-                                    .set(userToAdd)
+            //check if users signed in already in onStart
+            val auth = getInstance()
+            val intent = Intent(this, MainActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            if (url != null || url != "" || url != "null") {
+                intent.putExtra("url", url)
+            }
+
+            if (auth.currentUser != null) {
+                Toast.makeText(
+                    applicationContext,
+                    "Welcome Back! Signing you back in...",
+                    Toast.LENGTH_SHORT
+                ).show()
+
+                val userToSave = getInstance().currentUser
+                val userName = userToSave?.displayName
+                val email = userToSave?.email
+                val userId = userToSave?.uid
+                val userToAdd = User(userName!!, email!!, userId!!)
+
+                //checking to see if user document in database exists, if it doesn't, then create it
+                mFirebaseDatabaseInstance!!.collection("users").document(userId).get()
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val document = it.result
+                            if (document != null) {
+                                if (document.exists()) {
+
+                                    finish()
+                                    startActivity(intent)
+                                } else {
+                                    mFirebaseDatabaseInstance!!.collection("users").document(userId)
+                                        .set(userToAdd)
+                                }
                             }
                         }
+
                     }
-
-                }
+            }
         }
-
-
     }
 
 
@@ -93,6 +110,7 @@ class LoginActivity : AppCompatActivity() {
             val response = IdpResponse.fromResultIntent(data)
             Log.i("onActivityResult", "called")
             doOnResult(resultCode)
+
         } else {
             Toast.makeText(this, "Need to login", Toast.LENGTH_SHORT).show()
         }
@@ -103,9 +121,16 @@ class LoginActivity : AppCompatActivity() {
             //Successfully signed in
             if (resultCode == RESULT_OK) {
                 Log.i("onActivityResult", "called")
+                getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                    .putBoolean("wasSignInCalled", false).apply()
                 getInstance().currentUser
                 val intent2 = Intent(this, MainActivity::class.java)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                intent.putExtra("url", url)
+                //    finish()
+                Log.i("******", "activity result calling intent for mainactivity")
                 startActivity(intent2)
+                finish()
                 Toast.makeText(this, "Successfully signed in", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(
@@ -142,13 +167,12 @@ class LoginActivity : AppCompatActivity() {
                         1234,
                         null
                     )
+                    getSharedPreferences("PREFERENCE", MODE_PRIVATE).edit()
+                        .putBoolean("wasSignInCalled", true).apply()
             }
 
         } catch (ex: FirebaseAuthException) {
-            Log.i("exception", "firebaseauth exception")
             Toast.makeText(this, "Error signing in", Toast.LENGTH_LONG).show()
-
-
         }
 
 

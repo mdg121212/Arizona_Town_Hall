@@ -9,7 +9,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.storage.FirebaseStorage
 import com.mattg.arizonatownhall.ui.social2.IWillPhotoItem
 import com.mattg.arizonatownhall.utils.User
-import java.lang.Exception
+import java.util.*
 
 
 class SocialViewModel : ViewModel() {
@@ -22,9 +22,6 @@ class SocialViewModel : ViewModel() {
         text.value = "Test Value"
     }
 
-    private val _leaders = MutableLiveData<List<User>>()
-
-    val leaders: MutableLiveData<List<User>> = _leaders
 
     private val _photoList = MutableLiveData<List<IWillPhotoItem>>()
 
@@ -56,18 +53,19 @@ class SocialViewModel : ViewModel() {
                           val image = item.get("ImageName").toString()
                           var text = item.get("IWillText").toString()
                           try{
-                              text = text.substring(0,1).toLowerCase() + text.substring(1)
+                              text =
+                                  text.substring(0, 1).toLowerCase(Locale.ROOT) + text.substring(1)
                           } catch (e: Exception){
 
                           }
 
-                            val storageReference = FirebaseStorage.getInstance().reference
-                          val imageRef = storageReference.child("images").child("$image")
+                          val storageReference = FirebaseStorage.getInstance().reference
+                          val imageRef = storageReference.child("images").child(image)
 
                           if(imageRef != null) {
                               val itemToAdd = IWillPhotoItem(imageRef, text, name)
                               list2.add(itemToAdd)
-                          } else{
+                          } else {
                               Log.i("error", "storage ref was null")
                           }
 
@@ -75,25 +73,8 @@ class SocialViewModel : ViewModel() {
                       photoList.value = list2
                   }
 
-                var position = 1
-                var numberOfUsersLoaded = 0
-                val data = snapshots.documents
-                for(doc in data){
-                    val points = doc.get("points").toString()
-                    val name = doc.get("name").toString()
-                    if(points.isNotEmpty()) {
-                        val newPoints = points.toInt()
-                        val addUser = User(name, newPoints, position)
-                        list.add(addUser)
-                        position++
-                        numberOfUsersLoaded++
-                        if(numberOfUsersLoaded == 5){
-                            break
-                        }
-                    }
-                    }
+
             }
-            leaders.value = list
 
 
         }

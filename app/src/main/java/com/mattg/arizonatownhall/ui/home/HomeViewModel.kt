@@ -105,8 +105,6 @@ class HomeViewModel : ViewModel() {
                     response: Response<EventsResponse>
                 ) {
                     val events = response.body()!!.Events!!
-                    Log.i("events", "${response.body()}")
-
                     addEventsToRecycler(events)
 
                 }
