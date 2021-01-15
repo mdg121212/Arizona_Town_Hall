@@ -2,7 +2,6 @@ package com.mattg.arizonatownhall.ui.home
 
 
 import android.util.Log
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.firestore.FirebaseFirestore
@@ -28,12 +27,6 @@ class HomeViewModel : ViewModel() {
     val requestBodyRefresh = refreshBody.toRequestBody("text/plain".toMediaTypeOrNull())
     private var mFirebaseDatabaseInstance : FirebaseFirestore? = null
 
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is the home screen, where rolling lists of news, upcoming events, really anything from wildapricot" +
-                " that we want to show can be shown"
-    }
-    val text: LiveData<String> = _text
 
     val events = MutableLiveData<List<Event>>()
     val news = MutableLiveData<List<NewsItem>>()

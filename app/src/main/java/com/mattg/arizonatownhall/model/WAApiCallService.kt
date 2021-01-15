@@ -11,8 +11,6 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object WAApiCallService {
 
-
-
     private const val API_KEY = "APIKEY:${Constants.apiKey}"
     private const val BASE_URL = "https://oauth.wildapricot.org/"
     private const val BASE_API_URL = "https://api.wildapricot.org/v2.2/"
@@ -32,8 +30,6 @@ object WAApiCallService {
                 okHttpClient.addInterceptor { chain ->
                     //get the outgoing request
                     val request = chain.request()
-                    //  Log.d("CALL", request.body.toString())
-
                     //add another header to this request, its been built but build a new one
                     val newRequest = request.newBuilder()
                         .addHeader("Host", "oauth.wildapricot.org")
@@ -43,7 +39,6 @@ object WAApiCallService {
                         )
                         .method(request.method, request.body)
                         .build()
-                   // Log.d("CALL", "$newRequest")
                     chain.proceed(newRequest)
 
                 }
@@ -74,8 +69,6 @@ object WAApiCallService {
         okHttpClientGet.addInterceptor { chain ->
             //get the outgoing request
             val request = chain.request()
-            // Log.d("CALL", request.body.toString())
-
             //add another header to this request, its been built but build a new one
             val newRequest = request.newBuilder()
                 .addHeader("Host", "api.wildapricot.com")
