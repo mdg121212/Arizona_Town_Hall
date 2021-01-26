@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-<variable
-    name="sticker"
-    type="com.mattg.arizonatownhall.stickerView.Sticker" />
-    <variable
-        name="stickerInt"
-        type="com.mattg.arizonatownhall.stickerView.StickerInt" />
+
+        <variable
+            name="sticker"
+            type="com.mattg.aztownhall.stickerView.Sticker" />
+
+        <variable
+            name="stickerInt"
+            type="com.mattg.aztownhall.stickerView.StickerInt" />
     </data>
 
 

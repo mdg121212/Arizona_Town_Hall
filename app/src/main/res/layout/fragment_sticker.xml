@@ -30,7 +30,7 @@
             android:fitsSystemWindows="true"
             android:scaleType="fitCenter" />
 
-        <com.mattg.arizonatownhall.ui.social2.DrawingView
+        <com.mattg.aztownhall.ui.social2.DrawingView
             android:id="@+id/drawable_canvas"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

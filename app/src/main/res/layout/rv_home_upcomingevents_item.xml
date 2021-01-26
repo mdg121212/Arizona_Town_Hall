@@ -13,7 +13,7 @@
         <import type="android.graphics.drawable.Drawable"/>
        <variable
            name="util"
-           type="com.mattg.arizonatownhall.utils.DateUtils" />
+           type="com.mattg.aztownhall.utils.DateUtils" />
 
 
 

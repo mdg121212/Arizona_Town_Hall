@@ -13,12 +13,12 @@
 #-keepclassmembers class fqcn.of.javascript.interface.for.webview {
 #   public *;
 #}
--keep class com.mattg.arizonatownhall.model.AuthToken
--keep class com.mattg.arizonatownhall.model.Permission
+-keep class com.mattg.aztownhall.model.AuthToken
+-keep class com.mattg.aztownhall.model.Permission
 # Uncomment this to preserve the line number information for
 # debugging stack traces.
-#-keepattributes SourceFile,LineNumberTable
-
+-keepattributes SourceFile,LineNumberTable
+-keep class com.mattg.aztownhall.model.* { *; }
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
-#-renamesourcefileattribute SourceFile
+-renamesourcefileattribute SourceFile

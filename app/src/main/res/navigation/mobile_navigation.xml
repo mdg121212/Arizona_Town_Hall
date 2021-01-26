@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.mattg.arizonatownhall.ui.home.HomeFragment"
+        android:name="com.mattg.aztownhall.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" >
         <action
@@ -28,13 +28,13 @@
 
     <fragment
         android:id="@+id/nav_registration_donation"
-        android:name="com.mattg.arizonatownhall.ui.registrationDonation.RegistrationDonationFragment"
+        android:name="com.mattg.aztownhall.ui.registrationDonation.RegistrationDonationFragment"
         android:label="Registration/Donation"
         tools:layout="@layout/fragment_registration" />
 
     <fragment
         android:id="@+id/nav_social"
-        android:name="com.mattg.arizonatownhall.ui.social2.SocialFragment"
+        android:name="com.mattg.aztownhall.ui.social2.SocialFragment"
         android:label="Social"
         tools:layout="@layout/fragment_social" >
         <argument
@@ -65,7 +65,7 @@
     </fragment>
     <fragment
         android:id="@+id/stickerFragment"
-        android:name="com.mattg.arizonatownhall.ui.social2.StickerFragment"
+        android:name="com.mattg.aztownhall.ui.social2.StickerFragment"
         android:label="fragment_sticker"
         tools:layout="@layout/fragment_sticker" >
         <argument
@@ -88,7 +88,7 @@
     </fragment>
     <fragment
         android:id="@+id/signInUserFragment"
-        android:name="com.mattg.arizonatownhall.ui.wildapricotusersignsignin.SignInUserFragment"
+        android:name="com.mattg.aztownhall.ui.wildapricotusersignsignin.SignInUserFragment"
         android:label="fragment_sign_in_user"
         tools:layout="@layout/fragment_sign_in_user" >
         <action
@@ -101,12 +101,12 @@
     </fragment>
     <fragment
         android:id="@+id/linksFragment"
-        android:name="com.mattg.arizonatownhall.utils.LinksFragment"
+        android:name="com.mattg.aztownhall.utils.LinksFragment"
         android:label="fragment_links"
         tools:layout="@layout/fragment_links" />
     <fragment
         android:id="@+id/userOptionsFragment"
-        android:name="com.mattg.arizonatownhall.utils.UserOptionsFragment"
+        android:name="com.mattg.aztownhall.utils.UserOptionsFragment"
         android:label="fragment_user_options"
         tools:layout="@layout/fragment_user_options" />
 </navigation>

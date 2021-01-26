@@ -6,7 +6,7 @@
     <data>
         <variable
             name="user"
-            type="com.mattg.arizonatownhall.utils.User" />
+            type="com.mattg.aztownhall.utils.User" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

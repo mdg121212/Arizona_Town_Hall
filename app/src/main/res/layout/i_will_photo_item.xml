@@ -6,7 +6,7 @@
 <data>
 <variable
     name="item"
-    type="com.mattg.arizonatownhall.ui.social2.IWillPhotoItem" />
+    type="com.mattg.aztownhall.ui.social2.IWillPhotoItem" />
 </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

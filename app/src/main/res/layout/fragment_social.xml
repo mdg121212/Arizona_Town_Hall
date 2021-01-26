@@ -6,7 +6,7 @@
     <data>
 <variable
     name="socialViewModel"
-    type="com.mattg.arizonatownhall.viewmodels.SocialViewModel" />
+    type="com.mattg.aztownhall.viewmodels.SocialViewModel" />
 
     </data>
 
